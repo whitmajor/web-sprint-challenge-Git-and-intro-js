@@ -243,19 +243,46 @@ Example born in 1901 and died in 1959 - included -- born in 1889 and died in 192
 If correct, the function should return ["Salvador Dali", "Frida Kahlo"]*/
 // Hint - Look up the .split() method
 
-function get20s(array) {
-  const getResults =[]
-  for (let i = 0; i< artists.length-1; i++){
-  if (artists[i].years >=' 1901' && artists[i].years <= '2000'){
-    return array.push(artists[i])
+function get20s(array){
+ const longBio = [];
+  for (let i =0 ; i< array.length; i++){
+  const longYearsWords = array[i].years
+  const longBioWords2 = longYearsWords.split("-");{
+   for (let j = 0; j < longBioWords2.length; j++){  
+     if(longBioWords2[j] >= 1901 && longBioWords2[j] < 2000 && !longBioWords2 <1901){
+     longBio.push(array[j].name)
+   }
   }
 }
+return longBio
+ }
 }
 
 
+  
+console.log(get20s)
 
+/*const longYearsWords = artists['years']
+const longBioWords2 = longYearsWords.split(" ");
+console.log(longBioWords2)
+*/
+/*let bio1 = artists.bio
+const myArray = bio1.split(" ")
+console.log(myArray)
 
-
+function getLongReviews(reviewArr) {
+	const selectedLongReviewsArr = []
+	for (let i = 0; i < reviewArr.length; i++) {
+		const feedbackStr = reviewArr[i].feedback
+		const feedbackWordsArr = feedbackStr.split(' '); 
+		if (feedbackWordsArr.length > 15) {
+			selectedLongReviewsArr.push(reviews[i])
+		}
+	}
+	
+	return selectedLongReviewsArr
+  }
+*/
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 5: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
 Use removeArtist to do the following:
@@ -302,15 +329,26 @@ Use lotsOfArt to do the following:
 2. Return an array with names of artists in the received array who painted more than 100 paintings.
 
 For example lotsOfArt(artists); will return ["Amedeo Modigliani", "Rene Magritte", ... "Albrecht Dürer"]*/
-function lotsOfArt(array) {
-  let paintings100 = [];
-  for(let i = 0; i< artists.length; i++){
-    if(array[i].paintings> 100){
-     paintings100.push(artists[i].names)
-    }
+//console.log(names)
+
+
+const array1 = artists.filter((array => array.paintings > 100)).map((array) => array.name);
+console.log(array1)
+
+function lotsOfArt(array){
+  let paintings100 = []
+  for (let i = 0; i <array.length; i++){
+  if (array[i].paintings >100){
+    paintings100.push(array[i].name)
+
   }
-  return paintings100
+  }
+ return paintings100 
 }
+
+lotsOfArt(artists)
+
+//console.log(array,artists)
 
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 8: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
@@ -322,10 +360,17 @@ Use artistInfo to do the following:
 For example artistInfo(artists, 'Frida Kahlo') will return: 
   ["Frida Kahlo de Rivera (Spanish pronunciation: [ˈfɾiða ˈkalo]; born Magdalena Carmen Frida Kahlo y Calderón; 6 July 1907 – 13 July 1954) was a Mexican artist who painted many portraits, self-portraits and works inspired by the nature and artifacts of Mexico. Inspired by the country's popular culture, she employed a naïve folk art style to explore questions of identity, postcolonialism, gender, class and race in Mexican society. Her paintings often had strong autobiographical elements and mixed realism with fantasy. In addition to belonging to the post-revolutionary Mexicayotl movement, which sought to define a Mexican identity, Kahlo has been described as a surrealist or magical realist.Born to a German father and a mestiza mother, Kahlo spent most of her childhood and adult life at her family home in Coyoacán, La Casa Azul, now known and publicly accessible as the Frida Kahlo Museum. She was disabled by polio as a child. Until a traffic accident at age eighteen caused lifelong pain and medical problems, she had been a promising student headed for medical school. During her recovery, she returned to her childhood hobby of art with the idea of becoming an artist."]
 */
+
+
 function artistInfo(array,name){
-  array.filter(bio)
-  return array.name
+  for(let i=0; i < array.length; i++){
+    if(array[i].name === name){
+    return [array[i].bio]
+  }
 }
+}
+
+ 
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 9: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 Use artistByCountry to do the following: 
@@ -336,10 +381,16 @@ Use artistByCountry to do the following:
 For example artistByCountry(artists, 'Spanish') will return: [ 'Salvador Dali', 'Pablo Picasso', 'Francisco Goya']
 */
 
-function artistByCountry(array, nationality){}
+function artistByCountry(array, nationality){
+  let countryName =[]
+  for (let i = 0; i < array.length; i++){
+    if(array[i].nationality === nationality){
+    countryName.push( array[i].name)
+  }
+}
+return countryName
+}
  
-  
-
 
 
 /* ***** END OF TASKS ***** */
