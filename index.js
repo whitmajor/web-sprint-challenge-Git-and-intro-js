@@ -208,17 +208,17 @@ Practice accessing data above by console.log-ing following items:
 (no functions needed) */
 
 //(1) Name of the first artist (0th index) in the array
-console.log(artists[0].name)
+//console.log(artists[0].name)
 
 //(2) Bio of the third artist (2nd index) in the array 
 
-console.log(artists[3].bio)
+//console.log(artists[3].bio)
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 2: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
 (no function needed) 
 There is a typo in your dataset 😱 The 9th artist, Vincent Van Gogh is currently Vincent Van Dough. Fix this issue and console.log() to check your work. */
 artists[9].name= "Vincent Van Gogh"
-console.log(artists[9].name)
+//console.log(artists[9].name)
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 3: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀  
 Use getArtistByIndex to do the following:
@@ -244,34 +244,100 @@ If correct, the function should return ["Salvador Dali", "Frida Kahlo"]*/
 // Hint - Look up the .split() method
 
 function get20s(array){
- const longBio = [];
-  for (let i =0 ; i< array.length; i++){
-  const longYearsWords = array[i].years
-  const longBioWords2 = longYearsWords.split("-");{
-   for (let j = 0; j < longBioWords2.length; j++){  
-     if(longBioWords2[j] >= 1901 && longBioWords2[j] < 2000 && !longBioWords2 <1901){
-     longBio.push(array[j].name)
-   }
+  const newArtist= array.filter(artist =>{
+    const year = artist.years.split(' - ');
+    if(year[0] >= 1900 && year[1] <= 2000){
+      return artist;
+    }})
+    const artistName=newArtist.map(artist=>{
+      return artist.name;
+
+    })
+    return artistName;
   }
+  console.log(get20s(artists))
+
+/*const trippleyear1= doubleyear2.filter(item =>{
+  return item >1900 
+})
+return trippleyear1
 }
-return longBio
- }
+console.log(get20s(artists))
+  /*}
+const idsGreaterThanFive = people.filter(item => {
+	return item.id > 7;
+}) //this returns an array of objects with ids that are 6-10
+//console.log(idsGreaterThanFive)
+
+
+//NOW well make an array of their ip addresses 
+const ipAddressArr = idsGreaterThanFive.map(item => {
+	 return item.ip_address
+})
+console.log('ip adresss array from idsGreater than 5', ipAddressArr)
+
+//Next well use the function below and use .map along with .split and join to make an array of numbers from our ip addresses
+
+function turnIpsIntoLongNum(ipArr) {
+	//using the array of ips, use map to make a new array of each number that is seperated by a period
+	const arrOfSplitIps = ipArr.map(
+		(item) => {
+			return item.split(".")
+		});
+	console.log('array of an array of numbers by spiting each ip addresses from the from the ip array', arrOfSplitIps);
+	
+	//using that last array we just made, join those array of split numbers to make a new array of long numbers
+	const arrOfLongNumStrings = arrOfSplitIps.map(
+		(item) => { 
+			return item.join("")
+						 });
+	console.log('array of long number strings', arrOfLongNumStrings);
+	
+	const arrOfLongNum = arrOfLongNumStrings.map((item) => {
+		return parseInt(item) //turns each string into a number
+	})
+	return arrOfLongNum;
 }
+console.log('array of numbers', turnIpsIntoLongNum(ipAddressArr))
+const arrOfSplitIps = ipArr.map(
+		(item) => {
+			return item.split(".")
+		});
 
 
-  
-console.log(get20s)
 
-/*const longYearsWords = artists['years']
-const longBioWords2 = longYearsWords.split(" ");
-console.log(longBioWords2)
+
+
+  /*for(let i =0 ; i < array.length; i ++){
+      const array0 = array[i].years
+      let array1 = array0.split('-')
+      let array2 =array1.map(Number)
+      return array2
+    }
+  }
 */
-/*let bio1 = artists.bio
+
+  //this gave me all names and years   
+////const year2 =year1
+//if (artists.includes('-')){
+ // let newYear = artists.split("-")
+ // return newYear
+////}
+
+
+
+
+
+/*
+const longYearsWords = artists['years']
+const longBioWords2 = longYearsWords.split("-");
+console.log(longBioWords2)
+
+let bio1 = artists.bio
 const myArray = bio1.split(" ")
 console.log(myArray)
 
 function getLongReviews(reviewArr) {
-	const selectedLongReviewsArr = []
 	for (let i = 0; i < reviewArr.length; i++) {
 		const feedbackStr = reviewArr[i].feedback
 		const feedbackWordsArr = feedbackStr.split(' '); 
@@ -332,8 +398,8 @@ For example lotsOfArt(artists); will return ["Amedeo Modigliani", "Rene Magritte
 //console.log(names)
 
 
-const array1 = artists.filter((array => array.paintings > 100)).map((array) => array.name);
-console.log(array1)
+////const array1 = artists.filter((array => array.paintings > 100)).map((array) => array.name);
+//console.log(array1)
 
 function lotsOfArt(array){
   let paintings100 = []
